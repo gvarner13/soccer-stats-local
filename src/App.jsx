@@ -1,10 +1,12 @@
 import { useState } from "react";
 import teamLogo from "./impact-logo.png";
 import otherTeamLogo from "./other-team-logo.png";
+import StopWatchTimer from "./Timer";
 
 function App() {
   const [count, setCount] = useState(0);
   const [shots, setShots] = useState(0);
+  const [gameTime, setGameTime] = useState(0);
 
   return (
     <>
@@ -29,7 +31,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-md mx-auto">
         <div className="flex justify-center">
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -86,8 +88,31 @@ function App() {
                 <td>Shots</td>
                 <td>1</td>
               </tr>
+              <tr>
+                <td>{shots}</td>
+                <td>Shots On Target</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>
+                  {Intl.NumberFormat("en", {
+                    maximumFractionDigits: 2,
+                  }).format(90 * (shots / 100))}
+                  %
+                </td>
+                <td>Possession</td>
+                <td>1%</td>
+              </tr>
+              <tr>
+                <td>{shots}</td>
+                <td>Saves</td>
+                <td>1</td>
+              </tr>
             </tbody>
           </table>
+        </div>
+        <div className="mt-12">
+          <StopWatchTimer gameTime={gameTime} setGameTime={setGameTime} />
         </div>
       </div>
     </>
