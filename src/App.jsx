@@ -2,11 +2,20 @@ import { useState } from "react";
 import teamLogo from "./impact-logo.png";
 import otherTeamLogo from "./other-team-logo.png";
 import StopWatchTimer from "./Timer";
+import PossessionChart from "./PossessionChart";
 
 function App() {
   const [count, setCount] = useState(0);
   const [shots, setShots] = useState(0);
   const [gameTime, setGameTime] = useState(0);
+  const [events, setEvent] = useState([]);
+
+  const createEvent = (event) => {
+    setEvent([
+      ...events,
+      { id: Math.random(), type: event, value: 1, time: gameTime },
+    ]);
+  };
 
   return (
     <>
@@ -48,20 +57,26 @@ function App() {
               </button>
             </div>
             <div>
-              <button className="w-64 rounded-lg border-lime-700 border-2 p-4">
+              <button
+                className="w-64 rounded-lg border-lime-700 border-2 p-4"
+                onClick={() => createEvent("shot on target")}
+              >
                 Shot On Target
               </button>
             </div>
             <div>
               <button
                 className="w-64 rounded-lg border-lime-700 border-2 p-4"
-                onClick={() => setShots(shots + 1)}
+                onClick={() => createEvent("shot")}
               >
                 Shot
               </button>
             </div>
             <div>
-              <button className="w-64 rounded-lg border-lime-700 border-2 p-4">
+              <button
+                className="w-64 rounded-lg border-lime-700 border-2 p-4"
+                onClick={() => createEvent("save")}
+              >
                 Save
               </button>
             </div>
@@ -113,6 +128,19 @@ function App() {
         </div>
         <div className="mt-12">
           <StopWatchTimer gameTime={gameTime} setGameTime={setGameTime} />
+        </div>
+        <div className="h-96 flex">
+          <PossessionChart />
+        </div>
+        <div>
+          <ul>
+            <li>Something here</li>
+            {events.map((event) => (
+              <li key={event.id}>
+                {event.type} {event.time}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>
