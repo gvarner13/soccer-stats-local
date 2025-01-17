@@ -129,9 +129,9 @@ function App() {
         <div className="mt-12">
           <StopWatchTimer gameTime={gameTime} setGameTime={setGameTime} />
         </div>
-        <div className="h-96 flex">
+        {/* <div className="h-96 flex">
           <PossessionChart />
-        </div>
+        </div> */}
         <div>
           <ul>
             <li>Something here</li>
