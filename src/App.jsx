@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <div className="flex justify-center">
-        <div className="flex p-10 justify-between">
+        <div className="flex pt-10 pb-5 justify-between">
           <div className="p-4">
             <div className="mx-auto flex justify-center">
               <img src={teamLogo} className="w-16 h-12" />
@@ -41,6 +41,9 @@ function App() {
         </div>
       </div>
       <div className="max-w-screen-md mx-auto">
+        <div className="mb-5">
+          <StopWatchTimer gameTime={gameTime} setGameTime={setGameTime} />
+        </div>
         <div className="flex justify-center">
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -125,9 +128,6 @@ function App() {
               </tr>
             </tbody>
           </table>
-        </div>
-        <div className="mt-12">
-          <StopWatchTimer gameTime={gameTime} setGameTime={setGameTime} />
         </div>
         {/* <div className="h-96 flex">
           <PossessionChart />
